@@ -18,6 +18,8 @@ public class BarChartDataEntry: ChartDataEntry
     /// the values the stacked barchart holds
     private var _values: [Double]?
     
+    public var colors: [NSUIColor]?
+    
     /// the sum of all negative values this entry (if stacked) contains
     private var _negativeSum: Double = 0.0
     
@@ -37,6 +39,15 @@ public class BarChartDataEntry: ChartDataEntry
         calcPosNegSum()
     }
     
+    /// Constructor for stacked bar entries.
+    public init(values: [Double], colors: [NSUIColor], xIndex: Int)
+    {
+        super.init(value: BarChartDataEntry.calcSum(values), xIndex: xIndex)
+        self.values = values
+        self.colors = colors
+        calcPosNegSum()
+    }
+    
     /// Constructor for normal bars (not stacked).
     public override init(value: Double, xIndex: Int)
     {
@@ -48,6 +59,14 @@ public class BarChartDataEntry: ChartDataEntry
     {
         super.init(value: BarChartDataEntry.calcSum(values), xIndex: xIndex, data: label)
         self.values = values
+    }
+    
+    /// Constructor for stacked bar entries.
+    public init(values: [Double], colors: [NSUIColor], xIndex: Int, label: String)
+    {
+        super.init(value: BarChartDataEntry.calcSum(values), xIndex: xIndex, data: label)
+        self.values = values
+        self.colors = colors
     }
     
     /// Constructor for normal bars (not stacked).
