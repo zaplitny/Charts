@@ -78,6 +78,8 @@ public class BarChartRenderer: ChartDataRendererBase
         let drawBorder = borderWidth > 0.0
         var y: Double
         
+        var colorIndex:Int = 0
+        
         // do the drawing
         for j in 0 ..< Int(ceil(CGFloat(dataSet.entryCount) * animator.phaseX))
         {
@@ -245,8 +247,9 @@ public class BarChartRenderer: ChartDataRendererBase
                     }
                     
                     // Set the color for the currently drawn value. If the index is out of bounds, reuse colors.
-                    CGContextSetFillColorWithColor(context, dataSet.colorAt(k).CGColor)
+                    CGContextSetFillColorWithColor(context, dataSet.colorAt(colorIndex).CGColor)
                     CGContextFillRect(context, barRect)
+                    colorIndex = colorIndex + 1
                     
                     if drawBorder
                     {
