@@ -247,9 +247,11 @@ public class BarChartRenderer: ChartDataRendererBase
                     }
                     
                     // Set the color for the currently drawn value. If the index is out of bounds, reuse colors.
-                    CGContextSetFillColorWithColor(context, dataSet.colorAt(colorIndex).CGColor)
+                    
+                    
+                    let colors = e.colors!
+                    CGContextSetFillColorWithColor(context, colors[k].CGColor)
                     CGContextFillRect(context, barRect)
-                    colorIndex = colorIndex + 1
                     
                     if drawBorder
                     {
