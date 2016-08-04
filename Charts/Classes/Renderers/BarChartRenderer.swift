@@ -90,7 +90,7 @@ public class BarChartRenderer: ChartDataRendererBase
                 + groupSpace * CGFloat(e.xIndex) + groupSpaceHalf
             var vals = e.values
             
-            if (!containsStacks || vals == nil)
+            if (e.colors == nil && (!containsStacks || vals == nil))
             {
                 y = e.value
                 
